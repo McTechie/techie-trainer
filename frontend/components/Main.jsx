@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import WorkoutCard from './WorkoutCard';
@@ -8,10 +9,14 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 const Main = () => {
   const { data, error } = useSWR('http://localhost:4000/api/workouts', fetcher);
   const { workouts, dispatch } = useWorkoutsContext();
+  
+  const [selectedWorkout, setSelectedWorkout] = useState({});
 
-  if (data) {
-    dispatch({ type: 'SET_WORKOUTS', payload: data });
-  }
+  useEffect(() => {
+    if (data) {
+      dispatch({ type: 'SET_WORKOUTS', payload: data });
+    }
+  }, [data]);
 
   return (
     <main
@@ -24,11 +29,11 @@ const Main = () => {
       ) : (<>
         <div className='col-span-4 md:col-span-2 xl:col-span-3 space-y-4'>
           {workouts && workouts.map(workout => (
-            <WorkoutCard key={workout._id} workout={workout} />
+            <WorkoutCard key={workout._id} workout={workout} setSelectedWorkout={setSelectedWorkout} />
           ))}
         </div>
         <div className='col-span-4 md:col-span-2 xl:col-span-2'>
-          <WorkoutForm />
+          <WorkoutForm selectedWorkout={selectedWorkout} setSelectedWorkout={setSelectedWorkout} />
         </div>
       </>)}
     </main>

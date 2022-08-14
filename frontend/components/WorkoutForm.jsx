@@ -3,21 +3,39 @@ import { useForm } from 'react-hook-form';
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 import { ArrowCircleRightIcon, FireIcon } from '@heroicons/react/solid';
 
-const WorkoutForm = () => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
+  const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
   const { dispatch } = useWorkoutsContext();
   
   const [workoutCreated, setWorkoutCreated] = useState(false);
   const [error, setError] = useState(null);
 
+  const isUpdating = Object.keys(selectedWorkout).length !== 0;
+
+  if (isUpdating) {
+    setValue('title', selectedWorkout.title);
+    setValue('load', selectedWorkout.load);
+    setValue('sets', selectedWorkout.sets);
+    setValue('reps', selectedWorkout.reps);
+  }
+
   const onSubmit = async (data) => {
-    const res = await fetch('http://localhost:4000/api/workouts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });
+    const url = isUpdating
+    ? `http://localhost:4000/api/workouts/${selectedWorkout._id}`
+    : 'http://localhost:4000/api/workouts';
+
+    const reqMehtod = isUpdating ? 'PATCH' : 'POST';
+    
+    const res = await fetch(
+      url,
+      {
+        method: reqMehtod,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }
+    );
 
     const json = await res.json();
     
@@ -30,7 +48,8 @@ const WorkoutForm = () => {
       setError(null);
       setWorkoutCreated(true);
       dispatch({ type: 'ADD_WORKOUT', payload: json });
-      alert('Workout created!');
+      isUpdating ? alert('Workout updated!') : alert('Workout created!');
+      setSelectedWorkout({});
     }
   };
 
@@ -120,7 +139,7 @@ const WorkoutForm = () => {
         </div>
         
         <button type='submit' className='bg-primary rounded-full font-bold text-white text-sm py-2 flex items-center justify-center'>
-          Create Workout <ArrowCircleRightIcon className='h-5 inline-block ml-2' />
+          {isUpdating ? 'Update Workout' : 'Create Workout'} <ArrowCircleRightIcon className='h-5 inline-block ml-2' />
         </button>
       </form>
       

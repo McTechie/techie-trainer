@@ -1,12 +1,17 @@
 import { useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 import Head from 'next/head';
 import { Navbar } from '../components';
 import { KeyIcon } from '@heroicons/react/solid';
 import { UserCircleIcon } from '@heroicons/react/outline';
 import { useSignup } from '../hooks/useSignup';
 import { useLogin } from '../hooks/useLogin';
+import { useAuth } from '../hooks/useAuth';
 
 const Login = () => {
+  const { user } = useAuth();
+  const router = useRouter();
+
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
@@ -30,6 +35,12 @@ const Login = () => {
 
     await signup(username, password);
   }
+
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user])
 
   useEffect(() => {
     setTimeout(() => {

@@ -1,17 +1,30 @@
 import { TrashIcon, PencilAltIcon } from '@heroicons/react/solid';
 import { useWorkouts } from '../hooks/useWorkouts';
+import { useAuth } from '../hooks/useAuth';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 const WorkoutCard = ({ workout, setSelectedWorkout }) => {
   const { workouts, dispatch } = useWorkouts();
+  const { user } = useAuth();
 
   const handleUpdate = () => {
+    if (!user) {
+      return;
+    }
+
     setSelectedWorkout(workouts.find(userWorkout => userWorkout._id === workout._id));
   }
   
   const handleDelete = async () => {
+    if (!user) {
+      return;
+    }
+
     const res = await fetch(`http://localhost:4000/api/workouts/${workout._id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     });
 
     const json = await res.json();

@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useWorkouts } from '../hooks/useWorkouts';
+import { useAuth } from '../hooks/useAuth';
 import { ArrowCircleRightIcon, FireIcon } from '@heroicons/react/solid';
 
 const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
   const { dispatch } = useWorkouts();
+  const { user } = useAuth();
   
   const [workoutCreated, setWorkoutCreated] = useState(false);
   const [error, setError] = useState(null);
@@ -20,6 +22,11 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
   }
 
   const onSubmit = async (data) => {
+    if (!user) {
+      setError('You must be logged in to create a workout');
+      return;
+    }
+
     const url = isUpdating
     ? `http://localhost:4000/api/workouts/${selectedWorkout._id}`
     : 'http://localhost:4000/api/workouts';
@@ -31,7 +38,8 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
       {
         method: reqMehtod,
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`
         },
         body: JSON.stringify(data)
       }

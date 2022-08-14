@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useWorkouts } from '../hooks/useWorkouts';
 import { ArrowCircleRightIcon, FireIcon } from '@heroicons/react/solid';
 
 const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
   const { register, handleSubmit, reset, setValue, formState: { errors } } = useForm();
-  const { dispatch } = useWorkoutsContext();
+  const { dispatch } = useWorkouts();
   
   const [workoutCreated, setWorkoutCreated] = useState(false);
   const [error, setError] = useState(null);

@@ -1,9 +1,9 @@
 import { TrashIcon, PencilAltIcon } from '@heroicons/react/solid';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useWorkouts } from '../hooks/useWorkouts';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 const WorkoutCard = ({ workout, setSelectedWorkout }) => {
-  const { workouts, dispatch } = useWorkoutsContext();
+  const { workouts, dispatch } = useWorkouts();
 
   const handleUpdate = () => {
     setSelectedWorkout(workouts.find(userWorkout => userWorkout._id === workout._id));

@@ -10,7 +10,7 @@
   }
 
   .form-input {
-    @apply text-gray-500 shadow-sm rounded-full border border-primary px-4 py-1 col-span-3;
+    @apply text-gray-500 shadow-sm rounded-full border border-primary px-4 py-1 col-span-3 hover:shadow-md active:shadow-md;
   }
 
   .form-input-label {
@@ -19,5 +19,9 @@
 
   .form-input-error {
     @apply text-xs text-rose-400;
+  }
+
+  .login-input {
+    @apply text-gray-500 text-lg w-60 md:w-80 shadow-sm rounded-full border border-primary px-4 py-1 hover:shadow-md active:shadow-md;
   }
 }

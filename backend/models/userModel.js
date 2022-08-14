@@ -13,14 +13,6 @@ const userSchema = new Schema({
       message: 'Username already exists'
     }
   },
-  email: {
-    type: String,
-    required: true,
-    unique: {
-      index: true,
-      message: 'Email already exists'
-    }
-  },
   password: {
     type: String,
     required: true
@@ -28,24 +20,20 @@ const userSchema = new Schema({
 });
 
 // custom static methods (cannot be arrow function)
-userSchema.statics.signup = async function (username, email, password) {
+userSchema.statics.signup = async function (username, password) {
   // Validation
-  if (!username || !email || !password) {
+  if (!username || !password) {
     throw new Error('All fields must be filled');
-  }
-  
-  if (!validator.isEmail(email)) {
-    throw new Error('Email is invalid');
   }
 
   if (!validator.isStrongPassword(password)) {
     throw new Error('Password not strong enough');
   }
 
-  const alreadyExists = await this.findOne(email);
+  const alreadyExists = await this.findOne({ username });
 
   if (alreadyExists) {
-    throw new Error('Email already in use');
+    throw new Error('Username is already taken');
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -53,7 +41,6 @@ userSchema.statics.signup = async function (username, email, password) {
 
   const user = await this.create({
     username,
-    email,
     password: hash
   });
 
@@ -62,7 +49,7 @@ userSchema.statics.signup = async function (username, email, password) {
 
 userSchema.statics.login = async function (username, password) {
   // Validation
-  if (!username || !email || !password) {
+  if (!username || !password) {
     throw new Error('All fields must be filled');
   }
   
@@ -81,4 +68,4 @@ userSchema.statics.login = async function (username, password) {
   return user;
 }
 
-module.exports = mongoose.model('User', userSchema);;
+module.exports = mongoose.model('User', userSchema);

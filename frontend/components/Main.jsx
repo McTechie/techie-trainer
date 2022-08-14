@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useWorkouts } from '../hooks/useWorkouts';
 import WorkoutCard from './WorkoutCard';
 import WorkoutForm from './WorkoutForm';
 
@@ -8,7 +8,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Main = () => {
   const { data, error } = useSWR('http://localhost:4000/api/workouts', fetcher);
-  const { workouts, dispatch } = useWorkoutsContext();
+  const { workouts, dispatch } = useWorkouts();
   
   const [selectedWorkout, setSelectedWorkout] = useState({});
 

@@ -3,12 +3,13 @@ import Link from 'next/link';
 import { useAuth } from '../hooks/useAuth';
 import { useLogout } from '../hooks/useLogout';
 import { useDarkMode } from '../hooks/useDarkMode';
+import { useDeleteUser } from '../hooks/useDeleteUser';
 
 const Navbar = () => {
-  const { logout } = useLogout();
   const { user } = useAuth();
-
+  const { logout } = useLogout();
   const { darkMode, dispatch } = useDarkMode();
+  const { deleteUser } = useDeleteUser();
 
   const handleLogout = () => {
     logout();
@@ -18,7 +19,7 @@ const Navbar = () => {
     const userResponse = prompt(`\nAre you sure you want to delete your account?\nPlease confirm by entering \"${user.username}\" below:\n`, 'Your Username');
 
     if (userResponse === user.username) {
-      console.log('User confirmed');
+      deleteUser(user);
     }
   }
 

@@ -113,6 +113,9 @@ const Login = () => {
         {error && <div className='bg-rose-200 py-5 my-5 mx-auto border border-rose-500 text-rose-500 text-center rounded-md shadow-md w-96'>
           {error}
         </div>}
+        {loginError && <div className='bg-rose-200 py-5 my-5 mx-auto border border-rose-500 text-rose-500 text-center rounded-md shadow-md w-96'>
+          {loginError}
+        </div>}
       </main>
 
       {/* Footer */}

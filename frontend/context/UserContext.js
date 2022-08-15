@@ -12,6 +12,10 @@ export const userReducer = (state, action) => {
       return {
         user: null
       };
+    case 'DELETE':
+      return {
+        user: null
+      };
     default:
       return state;
   }

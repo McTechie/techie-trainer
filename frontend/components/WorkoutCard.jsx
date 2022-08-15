@@ -35,7 +35,7 @@ const WorkoutCard = ({ workout, setSelectedWorkout }) => {
 
     if (res.ok) {
       dispatch({ type: 'DELETE_WORKOUT', payload: json });
-      alert('Workout deleted!');
+      console.log('Workout deleted!');
     }
   }
 

@@ -27,7 +27,6 @@
 - [x] Mongoose Schemas & Models
 - [x] Express Router
 - [x] Environment Variables
-- [x] NextJS Client-Side Data Fetching (SWR)
 - [x] Context API (Global State)
 - [x] Custom Hooks
 - [x] React Hook Form (Form Validation)

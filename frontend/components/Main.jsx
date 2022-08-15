@@ -20,8 +20,6 @@ const Main = () => {
 
       const data = await res.json();
 
-      console.log(data);
-
       if (res.ok) {
         dispatch({ type: 'SET_WORKOUTS', payload: data });
       }
@@ -38,7 +36,7 @@ const Main = () => {
     >
       <>
         <div className='col-span-4 md:col-span-2 xl:col-span-3 space-y-4'>
-          {workouts && workouts.map(workout => (
+          {workouts?.map(workout => (
             <WorkoutCard key={workout._id} workout={workout} setSelectedWorkout={setSelectedWorkout} />
           ))}
         </div>

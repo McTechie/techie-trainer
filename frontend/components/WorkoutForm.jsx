@@ -33,17 +33,14 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
 
     const reqMehtod = isUpdating ? 'PATCH' : 'POST';
     
-    const res = await fetch(
-      url,
-      {
-        method: reqMehtod,
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`
-        },
-        body: JSON.stringify(data)
-      }
-    );
+    const res = await fetch(url, {
+      method: reqMehtod,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
+      },
+      body: JSON.stringify(data)
+    });
 
     const json = await res.json();
     
@@ -53,10 +50,16 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
     }
     
     if (res.ok) {
-      setError(null);
+      isUpdating
+        ? dispatch({ type: 'UPDATE_WORKOUT', payload: { data, createdAt: selectedWorkout.createdAt, _id: selectedWorkout._id } })
+        : dispatch({ type: 'CREATE_WORKOUT', payload: json });
+
+      isUpdating
+        ? console.log('Workout updated!')
+        : console.log('Workout created!');
+      
+        setError(null);
       setWorkoutCreated(true);
-      dispatch({ type: 'ADD_WORKOUT', payload: json });
-      isUpdating ? alert('Workout updated!') : alert('Workout created!');
       setSelectedWorkout({});
     }
   };

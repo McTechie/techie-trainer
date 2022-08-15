@@ -5,16 +5,44 @@
 @tailwind utilities;
 
 @layer components {
+  .navbar-brand {
+    @apply first-letter:text-primary first-letter:text-3xl lg:first-letter:text-4xl xl:first-letter:text-5xl text-gray-600 dark:text-gray-200 text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold cursor-pointer;
+  }
+
+  .logout-btn {
+    @apply hidden md:inline-block rounded-full font-bold bg-white dark:bg-slate-700 text-primary dark:text-gray-300 border-2 border-primary text-sm lg:text-base w-32 py-2 hover:shadow-md dark:hover:shadow-sm dark:hover:shadow-slate-500;
+  }
+
+  .logout-icon {
+    @apply h-10 p-1 rounded-full text-lg inline-block md:hidden dark:bg-slate-700 text-primary border-4 border-primary hover:cursor-pointer hover:shadow-sm dark:hover:shadow-slate-500;
+  }
+
+  .delete-acc-btn {
+    @apply hidden md:inline-block rounded-full font-bold bg-rose-200 dark:bg-slate-700 text-rose-500 dark:text-gray-300 border-rose-500 border-2 text-sm lg:text-base w-44 py-2 ml-2 hover:shadow-md;
+  }
+
+  .delete-acc-icon {
+    @apply mx-2 h-10 p-1 rounded-full text-lg inline-block md:hidden bg-rose-200 text-rose-500 border-4 border-rose-500 hover:cursor-pointer hover:shadow-sm;
+  }
+
+  .moon-icon {
+    @apply mr-2 md:mx-2 h-10 p-1 rounded-full text-lg inline-block bg-neutral-200 text-neutral-500 border-4 border-neutral-500 hover:cursor-pointer hover:shadow-sm;
+  }
+
+  .sun-icon {
+    @apply mr-2 md:mx-2 h-10 p-1 rounded-full text-lg inline-block bg-amber-200 text-amber-600 border-4 border-amber-500 hover:cursor-pointer hover:shadow-sm;
+  }
+
   .form-input-section {
     @apply grid grid-cols-4 gap-2 items-center;
   }
 
   .form-input {
-    @apply text-gray-500 shadow-sm rounded-full border border-primary px-4 py-1 col-span-3 hover:shadow-md active:shadow-md;
+    @apply text-gray-500 dark:bg-gray-300 dark:text-gray-700 dark:placeholder:text-gray-500 shadow-sm rounded-full border border-primary px-4 py-1 col-span-3 hover:shadow-md active:shadow-md;
   }
 
   .form-input-label {
-    @apply text-gray-600 text-xs lg:text-sm col-span-1;
+    @apply text-gray-600 dark:text-slate-400 text-xs lg:text-sm col-span-1;
   }
 
   .form-input-error {

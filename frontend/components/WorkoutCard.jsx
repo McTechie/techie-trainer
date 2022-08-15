@@ -40,17 +40,17 @@ const WorkoutCard = ({ workout, setSelectedWorkout }) => {
   }
 
   return (
-    <div className='bg-white p-5 rounded-lg shadow-md border-gray-50 text-neutral-600'>
+    <div className='bg-white dark:bg-neutral-800 dark:text-slate-400 p-5 rounded-lg shadow-md border-gray-50 text-neutral-600'>
       <h4 className='font-bold text-primary mr-2 mb-3 text-lg flex justify-between'>
         {workout.title}
         <div className='flex space-x-2'>
           <PencilAltIcon
             onClick={handleUpdate}
-            className='h-8 border-2 border-primary p-1 rounded-full cursor-pointer active:ease-in-out active:duration-100 active:border-4 active:scale-95'
+            className='h-8 border-2 dark:bg-gray-700 border-primary p-1 rounded-full cursor-pointer active:ease-in-out active:duration-100 active:border-4 active:scale-95'
           />
           <TrashIcon
             onClick={handleDelete}
-            className='h-8 border-2 border-primary p-1 rounded-full cursor-pointer active:ease-in-out active:duration-100 active:border-4 active:scale-95'
+            className='h-8 border-2 dark:bg-gray-700 border-primary p-1 rounded-full cursor-pointer active:ease-in-out active:duration-100 active:border-4 active:scale-95'
           />
         </div>
       </h4>

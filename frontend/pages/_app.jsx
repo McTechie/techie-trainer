@@ -1,13 +1,16 @@
 import '../styles/globals.css'
 import { WorkoutsContextProvider } from '../context/WorkoutsContext'
 import { UserContextProvider } from '../context/UserContext'
+import { DarkModeContextProvider } from '../context/DarkModeContext'
 
 function MyApp({ Component, pageProps }) {
   return (
     <UserContextProvider>
-      <WorkoutsContextProvider>
-        <Component {...pageProps} />
-      </WorkoutsContextProvider>
+      <DarkModeContextProvider>
+        <WorkoutsContextProvider>
+          <Component {...pageProps} />
+        </WorkoutsContextProvider>
+      </DarkModeContextProvider>
     </UserContextProvider>
   )
 }

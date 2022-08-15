@@ -19,6 +19,11 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
     setValue('load', selectedWorkout.load);
     setValue('sets', selectedWorkout.sets);
     setValue('reps', selectedWorkout.reps);
+  } else {
+    setValue('title', '');
+    setValue('load', '');
+    setValue('sets', '');
+    setValue('reps', '');
   }
 
   const onSubmit = async (data) => {
@@ -58,7 +63,7 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
         ? console.log('Workout updated!')
         : console.log('Workout created!');
       
-        setError(null);
+      setError(null);
       setWorkoutCreated(true);
       setSelectedWorkout({});
     }
@@ -70,7 +75,7 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
   }, [workoutCreated]);
 
   return (
-    <div className='bg-white p-6 rounded-lg shadow-md'>
+    <div className='bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md'>
       <h4 className='text-primary text-xl text-center font-bold pb-2 mb-2 border-b-primary border-b flex items-center justify-center'>
         Add Workouts <FireIcon className='h-6 ml-2' />
       </h4>
@@ -149,7 +154,7 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
           {errors.reps && <div className='form-input-error'>Please enter the number of reps</div>}
         </div>
         
-        <button type='submit' className='bg-primary rounded-full font-bold text-white text-sm py-2 flex items-center justify-center'>
+        <button type='submit' className='bg-primary text-white rounded-full font-bold text-sm py-2 flex items-center justify-center'>
           {isUpdating ? 'Update Workout' : 'Create Workout'} <ArrowCircleRightIcon className='h-5 inline-block ml-2' />
         </button>
       </form>

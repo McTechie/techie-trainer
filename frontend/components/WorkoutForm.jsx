@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useWorkouts } from '../hooks/useWorkouts';
 import { useAuth } from '../hooks/useAuth';
@@ -19,11 +19,6 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
     setValue('load', selectedWorkout.load);
     setValue('sets', selectedWorkout.sets);
     setValue('reps', selectedWorkout.reps);
-  } else {
-    setValue('title', '');
-    setValue('load', '');
-    setValue('sets', '');
-    setValue('reps', '');
   }
 
   const onSubmit = async (data) => {
@@ -66,13 +61,9 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
       setError(null);
       setWorkoutCreated(true);
       setSelectedWorkout({});
+      reset();
     }
   };
-
-  useEffect(() => {
-    // Clearing form upon submission
-    reset();
-  }, [workoutCreated]);
 
   return (
     <div className='bg-white dark:bg-neutral-800 p-6 rounded-lg shadow-md'>

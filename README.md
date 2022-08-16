@@ -27,6 +27,7 @@
 - [x] Mongoose Schemas & Models
 - [x] Express Router
 - [x] Environment Variables
+- [x] Dark Mode (Tailwind)
 - [x] Context API (Global State)
 - [x] Custom Hooks
 - [x] React Hook Form (Form Validation)

@@ -39,6 +39,14 @@ const Main = () => {
           {workouts?.map(workout => (
             <WorkoutCard key={workout._id} workout={workout} setSelectedWorkout={setSelectedWorkout} />
           ))}
+          {!workouts?.length && <div className='bg-white dark:bg-neutral-800 dark:text-slate-400 border-gray-50 text-neutral-600 text-center p-5 rounded-lg shadow-md'>
+            <h4 className='font-bold text-primary mr-2 mb-3 text-lg md:text-2xl'>
+              No workouts yet
+            </h4>
+            <p className='mt-10 mb-4'>
+              I'll leave tomorrow's problems to tomorrow's me, and today's workout to today's me!
+            </p>
+          </div>}
         </div>
         <div className='col-span-4 md:col-span-2 xl:col-span-2'>
           <WorkoutForm selectedWorkout={selectedWorkout} setSelectedWorkout={setSelectedWorkout} />

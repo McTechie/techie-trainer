@@ -23,11 +23,11 @@
 
 ### Concepts Covered
 
-- [x] MongoDB Atlas
-- [x] Mongoose Schemas & Models
+- [x] Context API (Global State)
+- [x] Dark Mode (Tailwind)
+- [x] Custom Hooks
+- [x] React Hook Form
+- [x] Docker (Docker Compose)
 - [x] Express Router
 - [x] Environment Variables
-- [x] Dark Mode (Tailwind)
-- [x] Context API (Global State)
-- [x] Custom Hooks
-- [x] React Hook Form (Form Validation)
+- [x] Mongoose Schemas & Models

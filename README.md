@@ -1,7 +1,7 @@
 <h1 align="center">
   Techie Trainer
 </h1>
-<p style='display: flex; align-items: center; justify-content: space-around;'>
+<p align="center" vertical-align="middle">
   <a href="https://www.mongodb.com">
     <img alt="MongoDB" src="https://github.com/mongodb/mongo/raw/master/docs/leaf.svg" width="26" />
   </a>
@@ -26,8 +26,6 @@
 </p>
 
 > A MENN-stack (MongoDB, Express, NextJS, Node) app created by **McTechie** 👨‍🎨✨
-
----
 
 ## Concepts Covered
 
@@ -79,6 +77,8 @@
 ### You can delete your User Account too
 
 ![Delete User Account](./assets/delete-account.png)
+
+---
 
 ### Completely Responsive for various Screen Sizes
 

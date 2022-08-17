@@ -44,7 +44,7 @@ const Main = () => {
               No workouts yet
             </h4>
             <p className='mt-10 mb-4'>
-              I'll leave tomorrow's problems to tomorrow's me, and today's workout to today's me!
+              I&apos;ll leave tomorrow&apos;s problems to tomorrow&apos;s me, and today&apos;s workout to today&apos;s me!
             </p>
           </div>}
         </div>

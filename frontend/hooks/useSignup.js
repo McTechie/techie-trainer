@@ -11,7 +11,7 @@ export const useSignup = () => {
     setLoading(true);
     setError(null);
     
-    const res = await fetch('http://localhost:4000/api/user/signup', {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/user/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

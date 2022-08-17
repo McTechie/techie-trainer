@@ -12,7 +12,7 @@ const Main = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const res = await fetch('http://localhost:4000/api/workouts', {
+      const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/workouts', {
         headers: {
           'Authorization': `Bearer ${user.token}`
         }

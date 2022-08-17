@@ -28,8 +28,8 @@ const WorkoutForm = ({ selectedWorkout, setSelectedWorkout }) => {
     }
 
     const url = isUpdating
-    ? `http://localhost:4000/api/workouts/${selectedWorkout._id}`
-    : 'http://localhost:4000/api/workouts';
+    ? `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/workouts/${selectedWorkout._id}`
+    : `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/workouts`;
 
     const reqMehtod = isUpdating ? 'PATCH' : 'POST';
     

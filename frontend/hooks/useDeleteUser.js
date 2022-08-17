@@ -4,7 +4,7 @@ export const useDeleteUser = () => {
   const { dispatch } = useAuth();
   
   const deleteUser = async (user) => {
-    const res = await fetch('http://localhost:4000/api/user/delete/' + user.username, {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + '/api/user/delete/' + user.username, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`

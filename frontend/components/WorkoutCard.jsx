@@ -20,7 +20,7 @@ const WorkoutCard = ({ workout, setSelectedWorkout }) => {
       return;
     }
 
-    const res = await fetch(`http://localhost:4000/api/workouts/${workout._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/workouts/${workout._id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${user.token}`
